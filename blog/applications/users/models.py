@@ -9,7 +9,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     GENDER_CHOICES = (
         ('M', 'Masculino'),
         ('F', 'Femenino'),
-        ('O', 'Otros'),
     )
 
     email = models.EmailField(unique=True)
