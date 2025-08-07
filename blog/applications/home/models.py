@@ -4,7 +4,7 @@ from model_utils.models import TimeStampedModel
 
 # Create your models here.
 class Home(TimeStampedModel):
-    """Modelo para datos de la pantalla Home"""
+    """Modelo para datos de la pantalla home"""
     title = models.CharField('Nombre', max_length=30)
     description = models.TextField()
     about_title = models.CharField('Titulo Nosotros', max_length=50)
