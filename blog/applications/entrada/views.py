@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 
 #models
-from applications.entrada.models import Entry
+from .models import Entry, Category
 
 # Create your views here.
 class EntryListView(ListView):
@@ -10,6 +10,14 @@ class EntryListView(ListView):
     context_object_name = "entradas"
     paginate_by = 10
 
-    def get_queryset(self):
+    def get_context_data(self, **kwargs):
+        context = super(EntryListView, self).get_context_data(**kwargs)
+        context["categorias"] = Category.objects.all()
+        return context
 
-        return []
+    def get_queryset(self):
+        kword = self.request.GET.get("kword", '')
+        categoria = self.request.GET.get("categoria", '')
+        #consulta de busqueda
+        resultado = Entry.objects.buscar_entrada(kword, categoria)
+        return resultado
